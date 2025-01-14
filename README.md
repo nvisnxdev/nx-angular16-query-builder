@@ -1,5 +1,5 @@
 # Angular-QueryBuilder
-Fork of [zebzhao/Angular-QueryBuilder](https://github.com/zebzhao/Angular-QueryBuilder), maintained by [Shout.com](https://shout.com)
+Fork of [shout/Angular-QueryBuilder](https://github.com/shout/Angular-QueryBuilder).
 
 A modernized Angular 16+ query builder based on jQuery QueryBuilder. Support for heavy customization with Angular 
 components and provides a flexible way to handle custom data types.
