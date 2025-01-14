@@ -1,5 +1,5 @@
 {
-  "name": "shout-angular-query-builder",
+  "name": "nx-angular16-query-builder",
   "version": "0.0.1",
   "dependencies": {
     "tslib": "^2.0.0"

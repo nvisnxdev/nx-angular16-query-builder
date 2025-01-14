@@ -95,12 +95,22 @@
             </ng-container>
 
             <ng-template #defaultField>
+              <!--main selection-->
               <div [ngClass]="getClassNames('fieldControlSize')">
                 <select [ngClass]="getClassNames('fieldControl')" [(ngModel)]="rule.field" (ngModelChange)="changeField($event, rule)"
                   [disabled]="disabled">
-                  <option *ngFor="let field of getFields(rule.entity)" [ngValue]="field.value">
-                    {{field.name}}
-                  </option>
+                  <ng-container *ngIf="hasGroupFieldConfig">
+                    <optgroup *ngFor="let group of groupedFields" [label]="getGroupFieldsLabel(group)">
+                      <option *ngFor="let field of getGroupFields(group.fields)" [ngValue]="field.value">
+                        {{field.name}}
+                      </option>
+                    </optgroup>
+                  </ng-container>
+                  <ng-container *ngIf="!hasGroupFieldConfig">
+                    <option *ngFor="let field of getFields(rule.entity)" [ngValue]="field.value">
+                      {{field.name}}
+                    </option>
+                  </ng-container>
                 </select>
               </div>
             </ng-template>
@@ -113,8 +123,8 @@
               <div [ngClass]="getClassNames('operatorControlSize')">
                 <select [ngClass]="getClassNames('operatorControl')" [(ngModel)]="rule.operator" (ngModelChange)="changeOperator(rule)"
                   [disabled]="disabled">
-                  <option *ngFor="let operator of getOperators(rule.field)" [ngValue]="getOperatorValue(operator)">
-                    {{operator?.localized ?? operator }}
+                  <option *ngFor="let operator of getOperatorsSortable(rule.field)" [ngValue]="operator">
+                    {{getOperatorTextLabel(operator)}}
                   </option>
                 </select>
               </div>
